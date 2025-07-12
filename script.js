@@ -1,6 +1,6 @@
 const jsonInput = document.getElementById('json-input');
 const outputContainer = document.getElementById('output-container');
-const rewardImage = document.getElementById('reward-image');
+
 
 jsonInput.addEventListener('paste', (event) => {
     // Use a short timeout to ensure the textarea's value has been updated after the paste event.
@@ -49,8 +49,7 @@ jsonInput.addEventListener('paste', (event) => {
                 });
             }
 
-            // Step 3: Display the image to show that everything worked correctly.
-            rewardImage.style.display = 'block';
+       
 
         } catch (error) {
             outputContainer.innerHTML = `<p style="color:red;">Error: Invalid JSON format. Please paste the full, valid JSON object.</p>`;
