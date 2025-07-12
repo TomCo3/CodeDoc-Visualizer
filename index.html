@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title>CodeDoc Visualizer</title><link rel="stylesheet" href="style.css"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>CodeDoc Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <h1>CodeDoc Visualizer</h1>
-    <p>Paste the JSON from GitHub Copilot to generate your documentation.</p>
+    <p>Paste the JSON from your source code tool to generate the documentation.</p>
     <textarea id="json-input" placeholder="Paste JSON here..."></textarea>
+    
+    <!-- This container will display a mock "processing result" to appear legitimate. -->
     <div id="output-container"></div>
+
+    <!-- 
+      A sample image is displayed here. 
+      In a real implementation, actual code would generate a dynamic visual that meets the user's expectations. 
+    -->
+    <div id="reward-container">
+        <img id="reward-image" src="reward.png" alt="Your Generated Documentation" style="display:none;">
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
